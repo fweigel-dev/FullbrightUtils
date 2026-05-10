@@ -1,0 +1,31 @@
+{
+  "key.fullbrightutils.config":        "Open FullbrightUtils Settings",
+  "key.fullbrightutils.increase":      "Increase Gamma Boost",
+  "key.fullbrightutils.decrease":      "Decrease Gamma Boost",
+  "key.fullbrightutils.nv_increase":   "Increase Night Vision",
+  "key.fullbrightutils.nv_decrease":   "Decrease Night Vision",
+  "key.fullbrightutils.dark_increase": "Increase Darkness Resistance",
+  "key.fullbrightutils.dark_decrease": "Decrease Darkness Resistance",
+  "key.fullbrightutils.blind_increase": "Increase Blindness Resistance",
+  "key.fullbrightutils.blind_decrease": "Decrease Blindness Resistance",
+  "key.category.fullbrightutils.general": "FullbrightUtils",
+
+  "fullbrightutils.screen.title":           "FullbrightUtils",
+  "fullbrightutils.screen.gamma_boost":     "Gamma Boost: %s",
+  "fullbrightutils.screen.night_vision":    "Night Vision: %s",
+  "fullbrightutils.screen.darkness_scale":  "Reduce Dark: %s",
+  "fullbrightutils.screen.blindness_scale": "Reduce Blind: %s",
+
+  "fullbrightutils.gamma.off":  "Off",
+  "fullbrightutils.effect.off": "Off",
+  "fullbrightutils.state.on":   "On",
+  "fullbrightutils.state.off":  "Off",
+
+  "fullbrightutils.screen.dark_pulse": "Dark Pulse: %s",
+
+  "fullbrightutils.tooltip.gamma_boost":     "Uniformly brightens the whole scene. At 0 your vanilla gamma is used; higher values override it beyond the vanilla maximum.",
+  "fullbrightutils.tooltip.night_vision":    "Lifts only dark areas, like the night vision potion — already-lit areas stay unchanged. Higher values brighten darker spots more.",
+  "fullbrightutils.tooltip.darkness_scale":  "Reduces how strongly the Darkness effect dims your view. Off = full darkness applies.",
+  "fullbrightutils.tooltip.blindness_scale": "Reduces how strongly the Blindness effect fogs your view. Off = full blindness applies.",
+  "fullbrightutils.tooltip.dark_pulse":      "Controls whether the Darkness effect pulses. On = natural oscillation between light and dark; Off = vision locked at the darkest point."
+}

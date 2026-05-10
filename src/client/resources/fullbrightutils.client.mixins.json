@@ -1,0 +1,16 @@
+{
+	"required": true,
+	"package": "dev.fweigel.fullbrightutils.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"OptionInstanceMixin",
+		"GammaOptionsMixin",
+		"NightVisionMixin",
+		"LightmapMixin",
+		"DarknessFogMixin",
+		"BlindnessFogMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

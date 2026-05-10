@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "fullbrightutils",
+	"version": "${version}",
+	"name": "FullbrightUtils",
+	"description": "Client-side Fabric mod for full control over brightness and visual effects: gamma boost, night vision, darkness resistance, and blindness resistance.",
+	"authors": [
+		"fweigel-dev"
+	],
+	"contact": {
+		"homepage": "https://github.com/fweigel-dev/FullbrightUtils",
+		"sources": "https://github.com/fweigel-dev/FullbrightUtils"
+	},
+	"license": "CC-BY-4.0",
+	"icon": "assets/fullbrightutils/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"dev.fweigel.fullbrightutils.FullbrightUtilsClient"
+		]
+	},
+	"mixins": [
+		{
+			"config": "fullbrightutils.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~26.1",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fweigel-util-lib": ">=1.1.0"
+	}
+}
