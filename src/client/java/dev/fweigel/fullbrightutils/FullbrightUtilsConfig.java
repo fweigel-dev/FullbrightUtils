@@ -11,6 +11,7 @@ public class FullbrightUtilsConfig {
     private static double  nightVisionStrength  = 0.0;
     private static double  darknessScale        = 1.0;
     private static double  blindnessScale       = 1.0;
+    private static double  netherFogScale       = 1.0;
     private static boolean darkPulseEnabled      = true;
 
     // The user's actual MC gamma (0.0–1.0), tracked so we can restore it on save.
@@ -21,6 +22,7 @@ public class FullbrightUtilsConfig {
     public static boolean isNightVisionActive()         { return nightVisionStrength > 0.001; }
     public static double  getDarknessScale()            { return darknessScale; }
     public static double  getBlindnessScale()           { return blindnessScale; }
+    public static double  getNetherFogScale()           { return netherFogScale; }
     public static double  getBaseGamma()                { return baseGamma; }
     public static boolean isDarkPulseEnabled()           { return darkPulseEnabled; }
 
@@ -28,6 +30,7 @@ public class FullbrightUtilsConfig {
     public static void setNightVisionStrength(double v)  { nightVisionStrength = Math.max(0.0, Math.min(1.0, v)); }
     public static void setDarknessScale(double v)        { darknessScale       = Math.max(0.0, Math.min(1.0, v)); }
     public static void setBlindnessScale(double v)       { blindnessScale      = Math.max(0.0, Math.min(1.0, v)); }
+    public static void setNetherFogScale(double v)       { netherFogScale      = Math.max(0.0, Math.min(1.0, v)); }
     public static void setBaseGamma(double v)            { baseGamma           = Math.max(0.0, Math.min(1.0, v)); }
     public static void setDarkPulseEnabled(boolean v)    { darkPulseEnabled    = v; }
 
@@ -44,11 +47,15 @@ public class FullbrightUtilsConfig {
     public static void increaseBlindnessResist() { setBlindnessScale(roundEffect(blindnessScale - EFFECT_STEP)); }
     public static void decreaseBlindnessResist() { setBlindnessScale(roundEffect(blindnessScale + EFFECT_STEP)); }
 
+    public static void increaseNetherFogResist() { setNetherFogScale(roundEffect(netherFogScale - EFFECT_STEP)); }
+    public static void decreaseNetherFogResist() { setNetherFogScale(roundEffect(netherFogScale + EFFECT_STEP)); }
+
     public static void reset() {
         gammaBoost          = 0.0;
         nightVisionStrength = 0.0;
         darknessScale       = 1.0;
         blindnessScale      = 1.0;
+        netherFogScale      = 1.0;
         baseGamma           = 1.0;
         darkPulseEnabled    = true;
     }

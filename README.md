@@ -13,4 +13,4 @@
   </div>
 </div>
 
-FullbrightUtils is a client-side Fabric mod that gives you full control over brightness and visual effects in Minecraft: gamma boost, night vision, darkness resistance, and blindness resistance, all configurable through a settings screen.
+FullbrightUtils is a client-side Fabric mod that gives you full control over brightness and visual effects in Minecraft: gamma boost, night vision, darkness resistance, blindness resistance and nether fog, all configurable through a settings screen.

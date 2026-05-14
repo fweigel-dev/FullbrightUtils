@@ -15,6 +15,7 @@ public final class FullbrightUtilsStorage {
         Double  nightVisionStrength;
         Double  darknessScale;
         Double  blindnessScale;
+        Double  netherFogScale;
         Double  baseGamma;
         Boolean darkPulseEnabled;
     }
@@ -27,6 +28,7 @@ public final class FullbrightUtilsStorage {
             if (data.nightVisionStrength != null) FullbrightUtilsConfig.setNightVisionStrength(data.nightVisionStrength);
             if (data.darknessScale       != null) FullbrightUtilsConfig.setDarknessScale(data.darknessScale);
             if (data.blindnessScale      != null) FullbrightUtilsConfig.setBlindnessScale(data.blindnessScale);
+            if (data.netherFogScale      != null) FullbrightUtilsConfig.setNetherFogScale(data.netherFogScale);
             if (data.baseGamma           != null) FullbrightUtilsConfig.setBaseGamma(data.baseGamma);
             if (data.darkPulseEnabled    != null) FullbrightUtilsConfig.setDarkPulseEnabled(data.darkPulseEnabled);
         }, FullbrightUtilsConfig::reset);
@@ -38,6 +40,7 @@ public final class FullbrightUtilsStorage {
         data.nightVisionStrength = FullbrightUtilsConfig.getNightVisionStrength();
         data.darknessScale       = FullbrightUtilsConfig.getDarknessScale();
         data.blindnessScale      = FullbrightUtilsConfig.getBlindnessScale();
+        data.netherFogScale      = FullbrightUtilsConfig.getNetherFogScale();
         data.baseGamma           = FullbrightUtilsConfig.getBaseGamma();
         data.darkPulseEnabled    = FullbrightUtilsConfig.isDarkPulseEnabled();
         STORAGE.save(data);

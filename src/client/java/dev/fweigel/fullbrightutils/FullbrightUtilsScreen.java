@@ -17,10 +17,11 @@ public class FullbrightUtilsScreen extends ModSettingsScreen {
 
     // gamma_boost_<tenths>.png  where tenths ∈ [-50 .. +50]  →  index = tenths + 50
     private static final Identifier[] GAMMA_FRAMES = new Identifier[101];
-    // night_vision_<pct>.png, darkness_<pct>.png, blindness_<pct>.png  pct ∈ [000,005,...,100]
-    private static final Identifier[] NV_FRAMES    = new Identifier[21];
-    private static final Identifier[] DARK_FRAMES  = new Identifier[21];
-    private static final Identifier[] BLIND_FRAMES = new Identifier[21];
+    // night_vision_<pct>.png, darkness_<pct>.png, blindness_<pct>.png, nether_fog_<pct>.png  pct ∈ [000,005,...,100]
+    private static final Identifier[] NV_FRAMES     = new Identifier[21];
+    private static final Identifier[] DARK_FRAMES   = new Identifier[21];
+    private static final Identifier[] BLIND_FRAMES  = new Identifier[21];
+    private static final Identifier[] NETHER_FRAMES = new Identifier[21];
 
     private static final Identifier[] DARK_PULSE_ON_FRAMES  = buildFrames("dark_pulse_on_%03d.png",  122);
     private static final Identifier[] DARK_PULSE_OFF_FRAMES = buildFrames("dark_pulse_off_%03d.png", 135);
@@ -32,9 +33,10 @@ public class FullbrightUtilsScreen extends ModSettingsScreen {
         }
         for (int i = 0; i <= 20; i++) {
             int pct = i * 5;
-            NV_FRAMES[i]    = id(String.format("night_vision_%03d.png", pct));
-            DARK_FRAMES[i]  = id(String.format("darkness_%03d.png",     pct));
-            BLIND_FRAMES[i] = id(String.format("blindness_%03d.png",    pct));
+            NV_FRAMES[i]     = id(String.format("night_vision_%03d.png", pct));
+            DARK_FRAMES[i]   = id(String.format("darkness_%03d.png",     pct));
+            BLIND_FRAMES[i]  = id(String.format("blindness_%03d.png",    pct));
+            NETHER_FRAMES[i] = id(String.format("nether_fog_%03d.png",   pct));
         }
     }
 
@@ -104,16 +106,36 @@ public class FullbrightUtilsScreen extends ModSettingsScreen {
             blindnessSlider
         );
 
-        Button pulseBtn = buildWideButton(
-                () -> Component.translatable("fullbrightutils.screen.dark_pulse",
+        double netherFogReduce = 1.0 - FullbrightUtilsConfig.getNetherFogScale();
+        AbstractSliderButton netherFogSlider = new AbstractSliderButton(0, 0, CARD_W, BUTTON_HEIGHT,
+                effectLabel("fullbrightutils.screen.nether_fog", netherFogReduce),
+                netherFogReduce) {
+            @Override protected void updateMessage() { setMessage(effectLabel("fullbrightutils.screen.nether_fog", roundScale(value))); }
+            @Override protected void applyValue() {
+                FullbrightUtilsConfig.setNetherFogScale(1.0 - roundScale(value));
+                FullbrightUtilsStorage.save();
+            }
+        };
+        netherFogSlider.setTooltip(Tooltip.create(Component.translatable("fullbrightutils.tooltip.nether_fog")));
+
+        Button pulseBtn = Button.builder(
+                Component.translatable("fullbrightutils.screen.dark_pulse",
                         Component.translatable(FullbrightUtilsConfig.isDarkPulseEnabled()
                                 ? "fullbrightutils.state.on" : "fullbrightutils.state.off")),
-                () -> {
+                btn -> {
                     FullbrightUtilsConfig.setDarkPulseEnabled(!FullbrightUtilsConfig.isDarkPulseEnabled());
                     FullbrightUtilsStorage.save();
-                });
+                    btn.setMessage(Component.translatable("fullbrightutils.screen.dark_pulse",
+                            Component.translatable(FullbrightUtilsConfig.isDarkPulseEnabled()
+                                    ? "fullbrightutils.state.on" : "fullbrightutils.state.off")));
+                })
+                .width(CARD_W)
+                .build();
         pulseBtn.setTooltip(Tooltip.create(Component.translatable("fullbrightutils.tooltip.dark_pulse")));
-        list.addSingleCard(
+
+        list.addSplitCard(
+                CardSpec.image(FullbrightUtilsScreen::netherFogPreviewId),
+                netherFogSlider,
                 CardSpec.animated(
                         () -> FullbrightUtilsConfig.isDarkPulseEnabled() ? DARK_PULSE_ON_FRAMES : DARK_PULSE_OFF_FRAMES,
                         DARK_PULSE_FRAME_MS, true),
@@ -142,6 +164,12 @@ public class FullbrightUtilsScreen extends ModSettingsScreen {
         double resist = 1.0 - FullbrightUtilsConfig.getBlindnessScale();
         int idx = (int) Math.round(resist * 20);
         return BLIND_FRAMES[Math.max(0, Math.min(20, idx))];
+    }
+
+    private static Identifier netherFogPreviewId() {
+        double reduce = 1.0 - FullbrightUtilsConfig.getNetherFogScale();
+        int idx = (int) Math.round(reduce * 20);
+        return NETHER_FRAMES[Math.max(0, Math.min(20, idx))];
     }
 
     // ── Helpers ────────────────────────────────────────────────────────────────

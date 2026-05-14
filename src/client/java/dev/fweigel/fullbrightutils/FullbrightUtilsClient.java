@@ -24,6 +24,8 @@ public class FullbrightUtilsClient implements ClientModInitializer {
     private static KeyMapping darkDecreaseKey;
     private static KeyMapping blindIncreaseKey;
     private static KeyMapping blindDecreaseKey;
+    private static KeyMapping netherIncreaseKey;
+    private static KeyMapping netherDecreaseKey;
 
     @Override
     public void onInitializeClient() {
@@ -36,8 +38,10 @@ public class FullbrightUtilsClient implements ClientModInitializer {
         nvDecreaseKey    = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.nv_decrease",    InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 4));
         darkIncreaseKey  = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.dark_increase",  InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 5));
         darkDecreaseKey  = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.dark_decrease",  InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 6));
-        blindIncreaseKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.blind_increase", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 7));
-        blindDecreaseKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.blind_decrease", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 8));
+        blindIncreaseKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.blind_increase",  InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 7));
+        blindDecreaseKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.blind_decrease",  InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 8));
+        netherIncreaseKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.nether_increase", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 9));
+        netherDecreaseKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.nether_decrease", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 10));
 
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) ->
                 FullbrightUtilsStorage.loadForWorld(client));
@@ -88,6 +92,16 @@ public class FullbrightUtilsClient implements ClientModInitializer {
                 FullbrightUtilsConfig.decreaseBlindnessResist();
                 FullbrightUtilsStorage.save();
                 showHud(client, hudEffect("fullbrightutils.screen.blindness_scale", 1.0 - FullbrightUtilsConfig.getBlindnessScale()));
+            }
+            while (netherIncreaseKey.consumeClick()) {
+                FullbrightUtilsConfig.increaseNetherFogResist();
+                FullbrightUtilsStorage.save();
+                showHud(client, hudEffect("fullbrightutils.screen.nether_fog", 1.0 - FullbrightUtilsConfig.getNetherFogScale()));
+            }
+            while (netherDecreaseKey.consumeClick()) {
+                FullbrightUtilsConfig.decreaseNetherFogResist();
+                FullbrightUtilsStorage.save();
+                showHud(client, hudEffect("fullbrightutils.screen.nether_fog", 1.0 - FullbrightUtilsConfig.getNetherFogScale()));
             }
 
             if (client.player == null) return;

@@ -8,6 +8,8 @@
   "key.fullbrightutils.dark_decrease": "Decrease Darkness Resistance",
   "key.fullbrightutils.blind_increase": "Increase Blindness Resistance",
   "key.fullbrightutils.blind_decrease": "Decrease Blindness Resistance",
+  "key.fullbrightutils.nether_increase": "Increase Nether Fog Reduction",
+  "key.fullbrightutils.nether_decrease": "Decrease Nether Fog Reduction",
   "key.category.fullbrightutils.general": "FullbrightUtils",
 
   "fullbrightutils.screen.title":           "FullbrightUtils",
@@ -15,6 +17,7 @@
   "fullbrightutils.screen.night_vision":    "Night Vision: %s",
   "fullbrightutils.screen.darkness_scale":  "Reduce Dark: %s",
   "fullbrightutils.screen.blindness_scale": "Reduce Blind: %s",
+  "fullbrightutils.screen.nether_fog":      "Reduce Nether Fog: %s",
 
   "fullbrightutils.gamma.off":  "Off",
   "fullbrightutils.effect.off": "Off",
@@ -27,5 +30,6 @@
   "fullbrightutils.tooltip.night_vision":    "Lifts only dark areas, like the night vision potion — already-lit areas stay unchanged. Higher values brighten darker spots more.",
   "fullbrightutils.tooltip.darkness_scale":  "Reduces how strongly the Darkness effect dims your view. Off = full darkness applies.",
   "fullbrightutils.tooltip.blindness_scale": "Reduces how strongly the Blindness effect fogs your view. Off = full blindness applies.",
+  "fullbrightutils.tooltip.nether_fog":      "Reduces the thick atmospheric fog in the Nether. Off = vanilla fog; 100% = fog fully removed.",
   "fullbrightutils.tooltip.dark_pulse":      "Controls whether the Darkness effect pulses. On = natural oscillation between light and dark; Off = vision locked at the darkest point."
 }
