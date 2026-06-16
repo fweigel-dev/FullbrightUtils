@@ -36,11 +36,11 @@ public class LightmapMixin {
         return FullbrightUtilsConfig.isDarkPulseEnabled() ? Mth.cos(angle) : 1.0f;
     }
 
-    // getNightVisionScale() is what actually sets nightVisionEffectIntensity in the render state —
+    // nightVisionScale() is what actually sets nightVisionEffectIntensity in the render state —
     // getEffectBlendFactor is not called for night vision in extract.
     @Redirect(method = "extract", at = @At(value = "INVOKE",
-            target = "Lnet/minecraft/client/renderer/GameRenderer;getNightVisionScale(Lnet/minecraft/world/entity/LivingEntity;F)F"))
+            target = "Lnet/minecraft/client/renderer/GameRenderer;nightVisionScale(Lnet/minecraft/world/entity/LivingEntity;F)F"))
     private float fullbrightutils_scaleNightVision(LivingEntity entity, float tickDelta) {
-        return GameRenderer.getNightVisionScale(entity, tickDelta) * (float) FullbrightUtilsConfig.getNightVisionStrength();
+        return GameRenderer.nightVisionScale(entity, tickDelta) * (float) FullbrightUtilsConfig.getNightVisionStrength();
     }
 }

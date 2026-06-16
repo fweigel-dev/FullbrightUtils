@@ -51,7 +51,7 @@ public class FullbrightUtilsClient implements ClientModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (configKey.consumeClick()) {
-                client.setScreen(new FullbrightUtilsScreen());
+                client.setScreenAndShow(new FullbrightUtilsScreen());
             }
             while (increaseKey.consumeClick()) {
                 FullbrightUtilsConfig.increaseBoost();
