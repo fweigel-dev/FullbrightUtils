@@ -10,7 +10,7 @@ import net.minecraft.client.OptionInstance;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.minecraft.network.chat.Component;
-import org.lwjgl.glfw.GLFW;
+import com.mojang.blaze3d.platform.InputConstants;
 import java.util.Locale;
 
 public class FullbrightUtilsClient implements ClientModInitializer {
@@ -29,19 +29,19 @@ public class FullbrightUtilsClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        configKey = ConfigKeyHelper.register("fullbrightutils", "key.fullbrightutils.config", GLFW.GLFW_KEY_F4);
+        configKey = ConfigKeyHelper.register("fullbrightutils", "key.fullbrightutils.config", InputConstants.KEY_F4);
 
         KeyMapping.Category category = configKey.getCategory();
-        increaseKey      = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.increase",       InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UP,      category, 1));
-        decreaseKey      = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.decrease",       InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_DOWN,    category, 2));
-        nvIncreaseKey    = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.nv_increase",    InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 3));
-        nvDecreaseKey    = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.nv_decrease",    InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 4));
-        darkIncreaseKey  = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.dark_increase",  InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 5));
-        darkDecreaseKey  = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.dark_decrease",  InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 6));
-        blindIncreaseKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.blind_increase",  InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 7));
-        blindDecreaseKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.blind_decrease",  InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 8));
-        netherIncreaseKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.nether_increase", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 9));
-        netherDecreaseKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.nether_decrease", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, category, 10));
+        increaseKey      = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.increase",       InputConstants.Type.KEYBOARD, InputConstants.KEY_UP,      category, 1));
+        decreaseKey      = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.decrease",       InputConstants.Type.KEYBOARD, InputConstants.KEY_DOWN,    category, 2));
+        nvIncreaseKey    = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.nv_increase",    InputConstants.Type.KEYBOARD, InputConstants.UNKNOWN.getValue(), category, 3));
+        nvDecreaseKey    = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.nv_decrease",    InputConstants.Type.KEYBOARD, InputConstants.UNKNOWN.getValue(), category, 4));
+        darkIncreaseKey  = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.dark_increase",  InputConstants.Type.KEYBOARD, InputConstants.UNKNOWN.getValue(), category, 5));
+        darkDecreaseKey  = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.dark_decrease",  InputConstants.Type.KEYBOARD, InputConstants.UNKNOWN.getValue(), category, 6));
+        blindIncreaseKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.blind_increase",  InputConstants.Type.KEYBOARD, InputConstants.UNKNOWN.getValue(), category, 7));
+        blindDecreaseKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.blind_decrease",  InputConstants.Type.KEYBOARD, InputConstants.UNKNOWN.getValue(), category, 8));
+        netherIncreaseKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.nether_increase", InputConstants.Type.KEYBOARD, InputConstants.UNKNOWN.getValue(), category, 9));
+        netherDecreaseKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.fullbrightutils.nether_decrease", InputConstants.Type.KEYBOARD, InputConstants.UNKNOWN.getValue(), category, 10));
 
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) ->
                 FullbrightUtilsStorage.loadForWorld(client));
