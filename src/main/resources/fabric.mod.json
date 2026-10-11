@@ -9,7 +9,8 @@
 	],
 	"contact": {
 		"homepage": "https://github.com/fweigel-dev/FullbrightUtils",
-		"sources": "https://github.com/fweigel-dev/FullbrightUtils"
+		"sources": "https://github.com/fweigel-dev/FullbrightUtils",
+		"issues": "https://github.com/fweigel-dev/FullbrightUtils/issues"
 	},
 	"license": "CC-BY-4.0",
 	"icon": "assets/fullbrightutils/icon.png",
@@ -17,6 +18,9 @@
 	"entrypoints": {
 		"client": [
 			"dev.fweigel.fullbrightutils.FullbrightUtilsClient"
+		],
+		"modmenu": [
+			"dev.fweigel.fullbrightutils.FullbrightUtilsModMenu"
 		]
 	},
 	"mixins": [
@@ -30,6 +34,9 @@
 		"minecraft": ">=26.3",
 		"java": ">=21",
 		"fabric-api": "*",
-		"fweigel-util-lib": ">=1.1.0"
+		"fweigel-util-lib": ">=1.7.0"
+	},
+	"suggests": {
+		"modmenu": "*"
 	}
 }

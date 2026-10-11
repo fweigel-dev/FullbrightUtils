@@ -6,6 +6,7 @@ import dev.fweigel.mobutils.core.client.ui.ModSettingsScreen;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 
@@ -41,7 +42,11 @@ public class FullbrightUtilsScreen extends ModSettingsScreen {
     }
 
     public FullbrightUtilsScreen() {
-        super(Component.translatable("fullbrightutils.screen.title"));
+        this(null);
+    }
+
+    public FullbrightUtilsScreen(Screen parent) {
+        super(Component.translatable("fullbrightutils.screen.title"), parent);
     }
 
     @Override
