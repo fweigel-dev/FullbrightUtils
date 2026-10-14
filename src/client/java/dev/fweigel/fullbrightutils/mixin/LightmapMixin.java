@@ -1,17 +1,20 @@
 package dev.fweigel.fullbrightutils.mixin;
 
 import dev.fweigel.fullbrightutils.FullbrightUtilsConfig;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.LightmapRenderStateExtractor;
-import net.minecraft.core.Holder;
 import net.minecraft.util.Mth;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Lightmap-side tweaks that have no other home. The darkness blend factor used to be scaled here
+ * as well, on the {@code getEffectBlendFactor} call inside {@code extract}; that now happens in
+ * {@link LivingEntityEffectMixin}, where every reader (vanilla lightmap, Vitrail, Iris) picks it up
+ * and where it is applied exactly once.
+ */
 @Mixin(LightmapRenderStateExtractor.class)
 public class LightmapMixin {
 
@@ -21,12 +24,6 @@ public class LightmapMixin {
             return gammaMinusDarkness;
         }
         return Math.max(zero, gammaMinusDarkness);
-    }
-
-    @Redirect(method = "extract", at = @At(value = "INVOKE",
-            target = "Lnet/minecraft/client/player/LocalPlayer;getEffectBlendFactor(Lnet/minecraft/core/Holder;F)F"))
-    private float fullbrightutils_scaleDarknessBlend(LocalPlayer player, Holder<MobEffect> effect, float tickDelta) {
-        return player.getEffectBlendFactor(effect, tickDelta) * (float) FullbrightUtilsConfig.getDarknessScale();
     }
 
     @Redirect(method = "calculateDarknessScale", at = @At(value = "INVOKE",

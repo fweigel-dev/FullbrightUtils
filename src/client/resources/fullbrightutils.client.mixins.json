@@ -6,6 +6,7 @@
 		"OptionInstanceMixin",
 		"GammaOptionsMixin",
 		"NightVisionMixin",
+		"LivingEntityEffectMixin",
 		"LightmapMixin",
 		"DarknessFogMixin",
 		"BlindnessFogMixin",
